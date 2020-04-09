@@ -1,10 +1,8 @@
 package ir.ac.kntu;
-import java.nio.file.LinkPermission;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import ir.ac.kntu.maputil.MapUtil;
-import net.sf.saxon.expr.Component;
 
 import java.util.Scanner;
 
@@ -17,12 +15,13 @@ public class Main {
         place.add(("tehran"));
         place.add(("rasht"));
         place.add(("karaj"));
+        place.add("TURKEY");
         ArrayList<String> pl = new ArrayList<>();
         pl.add("KARAJ");
         pl.add("SHIRAZ");
         ArrayList<String> pl2 = new ArrayList<>();
         pl2.add("RASHT");
-        pl2.add("TEHRAN");
+        pl2.add("TURKEY");
         ArrayList<String> pl3 = new ArrayList<>();
         pl3.add("SHIRAZ");
         pl3.add("RASHT");
@@ -52,6 +51,23 @@ public class Main {
         Tour tour = new Tour(12,map,100000,1,8,"KARAJ","TEHRAN",TripWay.EARTH);
         TourArray tourArray = TourArray.getTourArray();
         tourArray.add(tour);
+        HashMap<Integer,String> map1 = new HashMap<>();
+        i = 1;
+        int duration1 = 7;
+        String origin1 = "TEHRAN";
+        String destination1 = "TURKEY";
+        while(i < duration1){
+            map1.put(i,origin1);
+            i++;
+        }
+        map1.put(duration1,destination1);
+        map1.put(3,"Istanbul");
+        map1.put(4,"Istanbul");
+        map1.put(2,"Istanbul");
+        map1.put(5,"Ankara");
+        map1.put(6,"Ankara");
+        Tour tour1 = new Tour(duration1,map1,2000000,10,30,origin1,destination1,TripWay.AIR);
+        tourArray.add(tour1);
         mainMenu();
 //        Good for showing one location
 //        MapUtil.showMap("Shiraz");
@@ -153,10 +169,12 @@ public class Main {
         System.out.println("4.prepare a tour");
         System.out.println("5.delete a tour type");
         System.out.println("6.delete a prepared tour");
-        System.out.println("7.return to main menu");
+        System.out.println("7.search a tour type");
+        System.out.println("8.delete a prepared tour");
+        System.out.println("9.return to main menu");
         TourArray tourArray = TourArray.getTourArray();
         int in = input.nextInt();
-        in = inputValidation(in,1,7);
+        in = inputValidation(in,1,9);
         switch(in){
             case 1:
                 tourArray.showAll1();
@@ -187,6 +205,13 @@ public class Main {
                 tourMenu();
                 break;
             case 7:
+                tourArray.search1();
+                tourMenu();
+                break;
+            case 8:tourArray.search2();
+                tourMenu();
+                break;
+            case 9:
                 mainMenu();
                 break;
         }

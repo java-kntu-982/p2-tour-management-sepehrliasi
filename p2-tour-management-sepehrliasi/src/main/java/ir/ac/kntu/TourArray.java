@@ -22,6 +22,340 @@ public class TourArray {
         tours.add(tour);
     }
 
+    public void search1(){
+        System.out.println("1. by tour duration");
+        System.out.println("2. by place");
+        System.out.println("3. by number of participants");
+        System.out.println("4. by price");
+        System.out.println("5. back to tour menu");
+        int in = input.nextInt();
+        in = inputValidation(in,1,5);
+        switch (in){
+            case 1:
+                System.out.println("enter a number for duration:");
+                int duration = input.nextInt();
+                duration = inputValidation(duration,1,14);
+                int t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getDuration() == duration && tour.getType() == Type.TYPE){
+                        t++;
+                        System.out.println(t + "." + tour);
+                    }
+                }
+                line();
+                System.out.println(" *" + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 2:
+                System.out.println("place name:");
+                input.nextLine();
+                String name = input.nextLine();
+                t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getPlaces().containsValue(name) && tour.getType() == Type.TYPE){
+                        t++;
+                        System.out.println(t + "." + tour);
+                    }
+                }
+                line();
+                System.out.println("* " + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 3:
+                System.out.println("lower bound:");
+                int least = input.nextInt();
+                least = inputValidation(least,1,50);
+                System.out.println("upper bound:");
+                int most = input.nextInt();
+                most = inputValidation(most,1,50);
+                t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getLeastParticipants() > least && tour.getMostParticipants() < most){
+                        if(tour.getType() == Type.TYPE) {
+                            t++;
+                            System.out.println(t + "." + tour);
+                        }
+                    }
+                }
+                line();
+                System.out.println("* " + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 4:
+                System.out.println("1. special price");
+                System.out.println("2. more than ...");
+                System.out.println("3. less than ...");
+                System.out.println("4. between ... and ...");
+                int v = input.nextInt();
+                v = inputValidation(v,1,4);
+                switch(v){
+                    case 1:
+                        System.out.println("price to search");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() == in && tour.getType() == Type.TYPE){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 2:
+                        System.out.println("Enter a number:");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() > in && tour.getType() == Type.TYPE){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 3:
+                        System.out.println("Enter a number");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() < in && tour.getType() == Type.TYPE){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 4:
+                        System.out.println("lower bound:");
+                        int in1 = input.nextInt();
+                        System.out.println("upper bound:");
+                        int in2 = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() >= in1 && tour.getPrice() <= in2){
+                                if(tour.getType() == Type.TYPE) {
+                                    t++;
+                                    System.out.println(t + "." + tour);
+                                }
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                }
+            case 5:
+                break;
+        }
+    }
+
+    public void search2(){
+        System.out.println("1. by tour duration");
+        System.out.println("2. by place");
+        System.out.println("3. by number of participants");
+        System.out.println("4. by price");
+        System.out.println("5. by leader name");
+        System.out.println("6. back to tour menu");
+        int in = input.nextInt();
+        in = inputValidation(in,1,6);
+        switch (in){
+            case 1:
+                System.out.println("enter a number for duration:");
+                int duration = input.nextInt();
+                duration = inputValidation(duration,1,14);
+                int t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getDuration() == duration && tour.getType() == Type.PREPARED){
+                        t++;
+                        System.out.println(t + "." + tour);
+                    }
+                }
+                line();
+                System.out.println("* " + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 2:
+                System.out.println("place name:");
+                input.nextLine();
+                String name = input.nextLine();
+                t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getPlaces().containsValue(name) && tour.getType() == Type.PREPARED){
+                        t++;
+                        System.out.println(t + "." + tour);
+                    }
+                }
+                line();
+                System.out.println("* " + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 3:
+                System.out.println("lower bound:");
+                int least = input.nextInt();
+                least = inputValidation(least,1,50);
+                System.out.println("upper bound:");
+                int most = input.nextInt();
+                most = inputValidation(most,1,50);
+                t = 0;
+                line();
+                for(Tour tour : tours){
+                    if(tour.getLeastParticipants() > least && tour.getMostParticipants() < most){
+                        if(tour.getType() == Type.PREPARED) {
+                            t++;
+                            System.out.println(t + "." + tour);
+                        }
+                    }
+                }
+                line();
+                System.out.println(" *" + t + "tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                search1();
+                break;
+            case 4:
+                System.out.println("1. special price");
+                System.out.println("2. more than ...");
+                System.out.println("3. less than ...");
+                System.out.println("4. between ... and ...");
+                int v = input.nextInt();
+                v = inputValidation(v,1,4);
+                switch(v){
+                    case 1:
+                        System.out.println("price to search");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() == in && tour.getType() == Type.PREPARED){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 2:
+                        System.out.println("Enter a number:");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() > in && tour.getType() == Type.PREPARED){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 3:
+                        System.out.println("Enter a number");
+                        in = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() < in && tour.getType() == Type.PREPARED){
+                                t++;
+                                System.out.println(t + "." + tour);
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    case 4:
+                        System.out.println("lower bound:");
+                        int in1 = input.nextInt();
+                        System.out.println("upper bound:");
+                        int in2 = input.nextInt();
+                        t = 0;
+                        line();
+                        for(Tour tour : tours){
+                            if(tour.getPrice() >= in1 && tour.getPrice() <= in2){
+                                if(tour.getType() == Type.PREPARED) {
+                                    t++;
+                                    System.out.println(t + "." + tour);
+                                }
+                            }
+                        }
+                        line();
+                        System.out.println("* " + t + " tours found");
+                        System.out.println("Press Enter to continue");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                }
+            case 5:
+                System.out.println("first name:");
+                input.nextLine();
+                String name1 = input.nextLine();
+                System.out.println("last name:");
+                String name2 = input.nextLine();
+                name1 = name1.toUpperCase();
+                name2 = name2.toUpperCase();
+                line();
+                t = 0;
+                for(Tour tour : tours){
+                    if(tour.getLeader().getLastName().toUpperCase().compareTo(name2) == 0 && tour.getLeader().getFirstName().toUpperCase().compareTo(name1) == 0){
+                        if(tour.getType() == Type.PREPARED){
+                            t++;
+                            System.out.println(t + "." + tour);
+                        }
+                    }
+                }
+                line();
+                System.out.println("* " + t + " tours found");
+                System.out.println("Press Enter to continue");
+                input.nextLine();
+                input.nextLine();
+                search2();
+                break;
+            case 6:
+                break;
+        }
+    }
+
     public void showAll1(){
         int t = 1;
         for(Tour tour : tours){
@@ -242,5 +576,9 @@ public class TourArray {
             in = input.nextInt();
         }
         return in;
+    }
+
+    public static void line(){
+        System.out.print("--------------------\n");
     }
 }

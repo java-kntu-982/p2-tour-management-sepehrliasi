@@ -59,6 +59,22 @@ public class Tour {
         return places;
     }
 
+    public int getLeastParticipants(){
+        return leastParticipants;
+    }
+
+    public int getMostParticipants(){
+        return mostParticipants;
+    }
+
+    public long getPrice(){
+        return price;
+    }
+
+    public Leader getLeader(){
+        return leader;
+    }
+
     public Tour(Date start, String name, Leader leader, Tour tour){
         this.duration = tour.duration;
         this.places = tour.places;
