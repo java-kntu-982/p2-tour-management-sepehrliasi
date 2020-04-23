@@ -26,7 +26,7 @@ public class Places {
             System.out.println(string + " was already defined");
         }
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

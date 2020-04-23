@@ -3,7 +3,7 @@ package ir.ac.kntu;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Leader {
+public class Leader extends Admin{
     private String firstName;
     private String lastName;
     private int age;
@@ -14,7 +14,8 @@ public class Leader {
     private ArrayList<String> places;
     private Tour tour;
 
-    public Leader(String firstName, String lastName, long nationalCode, Date employment, Date birthday, int marriage, ArrayList<String> places){
+    public Leader(String firstName, String lastName, long nationalCode, Date employment, Date birthday, int marriage, ArrayList<String> places,String userName, String password, String email, long phoneNumber,User user){
+        super(userName, password, email, phoneNumber,user);
         this.firstName = firstName;
         this.lastName = lastName;
         this.nationalCode = nationalCode;

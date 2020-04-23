@@ -44,7 +44,7 @@ public class TourArray {
                     }
                 }
                 line();
-                System.out.println(" *" + t + "tours found");
+                System.out.println("* " + t + "tours found");
                 System.out.println("Press Enter to continue");
                 input.nextLine();
                 search1();
@@ -240,7 +240,7 @@ public class TourArray {
                     }
                 }
                 line();
-                System.out.println(" *" + t + "tours found");
+                System.out.println("* " + t + "tours found");
                 System.out.println("Press Enter to continue");
                 input.nextLine();
                 search1();
